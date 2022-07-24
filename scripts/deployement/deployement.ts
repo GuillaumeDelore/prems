@@ -112,7 +112,6 @@ export class Deployment {
     await this.ensureUniOracle();
     await this.ensureWBTCOracle();
     console.log(this.Info);
-    await this.ensureCharlie();
   }
   async ensureExternal() {
     if (this.Info.USDC) {
