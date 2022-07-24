@@ -33,14 +33,6 @@ import {
   ChainlinkOracleRelay__factory,
   ERC20Detailed__factory,
   TESTERC20__factory,
-  InterestProtocolTokenDelegate__factory,
-  InterestProtocolTokenDelegate,
-  InterestProtocolToken__factory,
-  GovernorCharlieDelegate__factory,
-  GovernorCharlieDelegator__factory,
-  GovernorCharlieDelegator,
-  GovernorCharlieDelegate,
-  InterestProtocolToken,
 } from "../../typechain-types";
 import { Addresser, MainnetAddresses } from "../../util/addresser";
 import { BN } from "../../util/number";
