@@ -94,12 +94,6 @@ export class Deployment {
 
   Info: DeploymentInfo;
 
-  IPTDelegate!: InterestProtocolTokenDelegate;
-  IPTDelegator!: InterestProtocolToken;
-
-  CharlieDelegator!: GovernorCharlieDelegator;
-  CharlieDelegate!: GovernorCharlieDelegate;
-
   deployer: SignerWithAddress;
 
   constructor(deployer: SignerWithAddress, i: DeploymentInfo) {
@@ -544,74 +538,5 @@ export class Deployment {
       );
       await t.wait();
     }
-  }
-
-  async ensureCharlie() {
-    if (this.Info.CharlieDelegator) {
-      console.log("found charlie at", this.Info.CharlieDelegator);
-      this.IPTDelegator = new InterestProtocolToken__factory(
-        this.deployer
-      ).attach(this.Info.IPTDelegator!);
-    } else {
-      console.log("Deploying governance stack");
-      this.IPTDelegate = await new InterestProtocolTokenDelegate__factory(
-        this.deployer
-      ).deploy();
-      await this.IPTDelegate.deployed();
-      console.log(
-        "InterestProtocolTokenDelegate deployed: ",
-        this.IPTDelegate.address
-      );
-      const totalSupply_ = BN("1e26");
-      console.log("Deploying GovernorCharlieDelegate...");
-      this.CharlieDelegate = await new GovernorCharlieDelegate__factory(
-        this.deployer
-      ).deploy();
-      await this.CharlieDelegate.deployed();
-
-      this.IPTDelegator = await new InterestProtocolToken__factory(
-        this.deployer
-      ).deploy(
-        this.deployer.address,
-        this.deployer.address,
-        this.IPTDelegate.address,
-        totalSupply_
-      );
-      await this.IPTDelegator.deployed();
-      console.log("IPTDelegator deployed: ", this.IPTDelegator.address);
-      console.log("Deploying GovernorCharlieDelegator...");
-      const votingDelay_ = BN("13140");
-      const votingPeriod_ = BN("40320");
-      const proposalTimelockDelay_ = BN("172800");
-      const proposalThreshold_ = BN("1000000e18");
-      const quorumVotes_ = BN("10000000e18");
-      const emergencyVotingPeriod_ = BN("6570");
-      const emergencyTimelockDelay_ = BN("43200");
-      const emergencyQuorumVotes_ = BN("40000000e18");
-      this.CharlieDelegator = await new GovernorCharlieDelegator__factory(
-        this.deployer
-      ).deploy(
-        this.IPTDelegator.address,
-        this.CharlieDelegate.address,
-        votingPeriod_,
-        votingDelay_,
-        proposalThreshold_,
-        proposalTimelockDelay_,
-        quorumVotes_,
-        emergencyQuorumVotes_,
-        emergencyVotingPeriod_,
-        emergencyTimelockDelay_
-      );
-      await this.CharlieDelegator.deployed();
-      console.log(
-        "Charlie Delegator Deployed: ",
-        this.CharlieDelegator.address
-      );
-
-      this.Info.CharlieDelegator = this.CharlieDelegator.address;
-      this.Info.CharlieDelegate = this.CharlieDelegate.address;
-      this.Info.IPTDelegator = this.IPTDelegator.address;
-      this.Info.IPTDelegate = this.IPTDelegate.address;
-    }
-  }
+  } 
 }

@@ -1,5 +1,5 @@
 import { Contract } from "ethers";
-import { Deployment, DeploymentInfo } from "./deployment/deployment";
+import { Deployment, DeploymentInfo } from "./deployement/deployement";
 
 const { ethers } = require("hardhat");
 
@@ -91,9 +91,6 @@ async function main() {
   a = await d.VaultController.transferOwnership(charlie);
   await a.wait();
   console.log("transfer vc");
-  a = await d.IPTDelegator._setOwner(charlie);
-  await a.wait();
-  console.log("transfer iptdelegator");
   a = await d.ProxyAdmin.transferOwnership(charlie);
   await a.wait();
   console.log("transfer proxy admin");
