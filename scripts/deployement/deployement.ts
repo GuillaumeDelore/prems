@@ -95,14 +95,23 @@ export class Deployment {
 
   async ensure() {
     await this.ensureExternal();
+    console.log("executing ensureExternal");
     await this.ensureProxyAdmin();
+    console.log("executing ensureProxyAdmin");
     await this.ensureVaultController();
+    console.log("executing ensureVaultController");
     await this.ensureUSDI();
+    console.log("executing ensureUSDI");
     await this.ensureCurve();
+    console.log("executing ensureCurve");
     await this.ensureOracle();
+    console.log("executing ensureOracle");
     await this.ensureEthOracle();
+    console.log("executing ensureEthOracle");
     await this.ensureUniOracle();
+    console.log("executing ensureUniOracle");
     await this.ensureWBTCOracle();
+    console.log("executing ensureWBTCOracle");
     console.log(this.Info);
   }
   async ensureExternal() {
@@ -481,6 +490,7 @@ export class Deployment {
       this.Info.Curve = this.Curve.address;
       console.log("deployed curve master at", this.Info.Curve);
     }
+    console.log("ERROR1");
     if (
       (await this.Curve._vaultControllerAddress()) !=
       this.VaultController.address

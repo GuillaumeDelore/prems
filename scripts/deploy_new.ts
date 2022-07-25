@@ -31,16 +31,12 @@ async function main() {
     UNI: "0x1f9840a85d5aF5bf1D1762F925BDADdC4201F984",
     // end external contracts
     // start new contracts
-    ProxyAdmin: "0x3D9d8c08dC16Aa104b5B24aBDd1aD857e2c0D8C5",
-    VaultController: "0x4aaE9823Fb4C70490F1d802fC697F3ffF8D5CbE3",
-    USDI: "0x2A54bA2964C8Cd459Dc568853F79813a60761B58",
+    ProxyAdmin: "0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266",
+    VaultController: "0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266",
+    USDI: "0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266",
     Curve: "0x0029abd74B7B32e6a82Bf9f62CB9Dd4Bf8e39aAf",
     ThreeLines: "0x8Ef82C4C48FaaD513D157a86433cd7D9397eA278",
     Oracle: "0xf4818813045E954f5Dc55a40c9B60Def0ba3D477",
-    CharlieDelegator: "0x266d1020A84B9E8B0ed320831838152075F8C4cA",
-    CharlieDelegate: "0xdF352c2fcB3cbfdbBA619090E2A1DEB9aC534A29",
-    IPTDelegator: "0xaF239a6fab6a873c779F3F33dbd34104287b93e1",
-    IPTDelegate: "0x35Bb90c0B96DdB4B93ddF42aFEDd5204E91A1A10",
     EthOracle: "0x65dA327b1740D00fF7B366a4fd8F33830a2f03A2",
     UniOracle: "0xCE554405b9a257eD00A4e0f114fF12ab832b4e3B",
     WBTCOracle: "0x8E7d39560b15B2D29E01b2502252C4B5f26f5326",
@@ -74,7 +70,7 @@ async function main() {
   // 5 mm to 0x6c3EE242880877fd0828B99cf7B442fcCAcf15c7
   // 10 mm to 0x77e30640f242349faf210598116e5a562e7be256
   // 35mm to 0x5a4396a2fe5fD36c6528a441D7A97c3B0f3e8aeE
-
+  console.log(" GREAT :) ");  
   const charlie = "0x266d1020A84B9E8B0ed320831838152075F8C4cA";
   let a = await d.USDI.setPauser("0xBA20749D3a88a32ef87240149977bFa489C38a1B");
   await a.wait();
